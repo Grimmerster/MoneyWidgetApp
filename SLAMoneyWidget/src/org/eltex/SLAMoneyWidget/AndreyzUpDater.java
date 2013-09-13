@@ -16,6 +16,7 @@ public class AndreyzUpDater {
 	String fileName;
 	final String dirName = "SLAMW";
 	URL url;
+	File file;
 
 	AndreyzUpDater(String urlka) {
 		root = android.os.Environment.getExternalStorageDirectory();
@@ -32,13 +33,13 @@ public class AndreyzUpDater {
 		}
 
 		if (this.downloadMethod()) {
-			Parser prs = new Parser(dirName, fileName);
+			Parser prs = new Parser(file);
 		}
 	}
 
 	private boolean downloadMethod() {
 		try {
-			File file = new File(dir, fileName);
+			file = new File(dir, fileName);
 
 			if (file.exists()) {
 				file.delete();
