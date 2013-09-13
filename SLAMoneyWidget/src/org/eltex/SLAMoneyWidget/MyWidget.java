@@ -1,4 +1,5 @@
 package org.eltex.SLAMoneyWidget;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.appwidget.AppWidgetManager;
@@ -9,6 +10,8 @@ import android.util.Log;
 
 public class MyWidget extends AppWidgetProvider {
 	final String LOG_TAG = "myLogs";
+	
+	ArrayList<String> data;
 
 	  @Override
 	  public void onEnabled(Context context) {
@@ -22,6 +25,7 @@ public class MyWidget extends AppWidgetProvider {
 	    super.onUpdate(context, appWidgetManager, appWidgetIds);
 	    Log.d(LOG_TAG, "onUpdate " + Arrays.toString(appWidgetIds));
 	    AndreyzUpDater aud= new AndreyzUpDater("http://www.cbr.ru/scripts/XML_daily.asp");
+	    data = aud.getSlavaDate();	    
 	  }
 
 	  @Override
