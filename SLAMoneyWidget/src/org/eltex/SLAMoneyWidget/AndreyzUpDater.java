@@ -40,7 +40,7 @@ public class AndreyzUpDater {
 	}
 	
 	public ArrayList<String> getSlavaDate(){
-		//return prs.
+		return prs.h2m14x6();
 	}
 
 	private boolean downloadMethod() {
