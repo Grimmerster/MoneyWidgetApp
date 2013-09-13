@@ -1,3 +1,4 @@
+package org.eltex.SLAMoneyWidget;
 import java.util.Arrays;
 
 import android.appwidget.AppWidgetManager;
