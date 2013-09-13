@@ -32,7 +32,7 @@ public class AndreyzUpDater {
 		}
 
 		if (this.downloadMethod()) {
-			//Parser prs = new Parser(dirName, fileName);
+			Parser prs = new Parser(dirName, fileName);
 		}
 	}
 
