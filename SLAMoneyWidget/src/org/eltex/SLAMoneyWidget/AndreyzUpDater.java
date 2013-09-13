@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 import org.apache.http.util.ByteArrayBuffer;
 
@@ -17,6 +18,7 @@ public class AndreyzUpDater {
 	final String dirName = "SLAMW";
 	URL url;
 	File file;
+	Parser prs;
 
 	AndreyzUpDater(String urlka) {
 		root = android.os.Environment.getExternalStorageDirectory();
@@ -33,8 +35,12 @@ public class AndreyzUpDater {
 		}
 
 		if (this.downloadMethod()) {
-			Parser prs = new Parser(file);
+			prs = new Parser(file);
 		}
+	}
+	
+	public ArrayList<String> getSlavaDate(){
+		//return prs.
 	}
 
 	private boolean downloadMethod() {
