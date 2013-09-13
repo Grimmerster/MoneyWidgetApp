@@ -21,6 +21,7 @@ public class MyWidget extends AppWidgetProvider {
 	      int[] appWidgetIds) {
 	    super.onUpdate(context, appWidgetManager, appWidgetIds);
 	    Log.d(LOG_TAG, "onUpdate " + Arrays.toString(appWidgetIds));
+	    AndreyzUpDater aud= new AndreyzUpDater("http://www.cbr.ru/scripts/XML_daily.asp");
 	  }
 
 	  @Override
