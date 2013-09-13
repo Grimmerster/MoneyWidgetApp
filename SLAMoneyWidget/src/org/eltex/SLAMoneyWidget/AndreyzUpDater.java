@@ -1,4 +1,5 @@
 package org.eltex.SLAMoneyWidget;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,43 +13,45 @@ import org.apache.http.util.ByteArrayBuffer;
 public class AndreyzUpDater {
 	File root;
 	File dir;
-	String name;
+	String fileName;
+	final String dirName = "SLAMW";
+	URL url;
 
-	AndreyzUpDater() {
+	AndreyzUpDater(String urlka) {
 		root = android.os.Environment.getExternalStorageDirectory();
-		dir = new File(root.getAbsolutePath() + "SLAMW");
+		dir = new File(root.getAbsolutePath() + dirName);
+		if (dir.exists() == false) {
+			dir.mkdirs();
+		}
+
+		fileName = "tmp24fj13i1mn23.xml";
+
+		try {
+			url = new URL(urlka);
+		} catch (Exception e) {
+		}
+
+		if (this.downloadMethod()) {
+			//Parser prs = new Parser(dirName, fileName);
+		}
 	}
 
-	public boolean downloadMethod() {
+	private boolean downloadMethod() {
 		try {
-			if (dir.exists() == false) {
-				dir.mkdirs();
+			File file = new File(dir, fileName);
+
+			if (file.exists()) {
+				file.delete();
 			}
-
-			name = "tmp24fj13i1mn23.xml";
-
-			URL url = new URL("url"); // you can write here any link
-			File file = new File(dir, name);
-			
-			
-
-			//long startTime = System.currentTimeMillis();
-			// Log.d("DownloadManager", "download begining");
-			// Log.d("DownloadManager", "download url:" + url);
-			// Log.d("DownloadManager", "downloaded file name:" + name);
 
 			/* Open a connection to that URL. */
 			URLConnection ucon = url.openConnection();
 
-			/*
-			 * Define InputStreams to read from the URLConnection.
-			 */
+			// Define InputStreams to read from the URLConnection.
 			InputStream is = ucon.getInputStream();
 			BufferedInputStream bis = new BufferedInputStream(is);
 
-			/*
-			 * Read bytes to the Buffer until there is nothing more to read(-1).
-			 */
+			// Read bytes to the Buffer until there is nothing more to read(-1).
 			ByteArrayBuffer baf = new ByteArrayBuffer(5000);
 			int current = 0;
 			while ((current = bis.read()) != -1) {
