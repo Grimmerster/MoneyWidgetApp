@@ -1,13 +1,16 @@
 package org.eltex.SLAMoneyWidget;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import android.R;
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MyWidget extends AppWidgetProvider {
@@ -15,11 +18,12 @@ public class MyWidget extends AppWidgetProvider {
 	
 	ArrayList<String> data;
 	TextView tvName,tvMoney;
+	String str="";
 
 	  @Override
 	  public void onEnabled(Context context) {
 	    super.onEnabled(context);
-	    Log.d(LOG_TAG, "onEnabled");
+	    Log.v(LOG_TAG, "onEnabled");
 	  }
 
 	  @Override
@@ -27,8 +31,21 @@ public class MyWidget extends AppWidgetProvider {
 	      int[] appWidgetIds) {
 	    super.onUpdate(context, appWidgetManager, appWidgetIds);
 	    Log.d(LOG_TAG, "onUpdate " + Arrays.toString(appWidgetIds));
-	   // AndreyzUpDater aud= new AndreyzUpDater("http://www.cbr.ru/scripts/XML_daily.asp");
-	   // data = aud.getSlavaDate();	    
+	    //tvName = (TextView) findViewById(R.id.text1);
+	    AndreyzUpDater aud= new AndreyzUpDater("http://www.cbr.ru/scripts/XML_daily.asp");
+	    try {
+			data = aud.getSlavaDate();
+			for(int i=0;i<data.size();i++){
+				str+=data.get(i);
+			}
+			Log.v(LOG_TAG, str);
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	    
 	  }
 
 	  @Override
