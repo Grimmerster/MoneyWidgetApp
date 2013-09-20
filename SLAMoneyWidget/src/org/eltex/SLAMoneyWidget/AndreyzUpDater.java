@@ -8,8 +8,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-
+import org.xmlpull.v1.XmlPullParser;
 import org.apache.http.util.ByteArrayBuffer;
+import org.xmlpull.v1.XmlPullParserException;
 
 public class AndreyzUpDater {
 	File root;
@@ -35,12 +36,12 @@ public class AndreyzUpDater {
 		}
 
 		if (this.downloadMethod()) {
-			prs = new Parser(file);
+			prs = new Parser((XmlPullParser)(file));
 		}
 	}
 	
-	public ArrayList<String> getSlavaDate(){
-		return prs.h2m14x6();
+	public ArrayList<String> getSlavaDate() throws XmlPullParserException, IOException{
+		return prs.getValues();
 	}
 
 	private boolean downloadMethod() {
